@@ -16,12 +16,13 @@ include ('data_genertor_class/OnetGenerator.php');
 $test = new OnetGenerator();
 
 
+//print_r($test ->getArrayPoland());
 
-$test ->generateNews();
+$test ->getArrayWorld();
 
 
 
 
-print_r($test->getArrayNews());
+
 
 

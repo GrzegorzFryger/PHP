@@ -6,86 +6,96 @@
  * Time: 01:31
  */
 
-include ('lib/simplehtmldom/simple_html_dom.php');
+include('lib/simplehtmldom/simple_html_dom.php');
 
-include ('data_class/News.php');
+include('data_class/News.php');
 
 abstract class AbstractGenerator
 {
 
-    private $simpleHtmlDom;
+
+    private $arrayNewsPoland = array();
+    private $arrayNewsWorld = array();
 
 
+    abstract protected function divStatement();
 
-  private $domDataaWorld;
-  private $domDataPoland;
+    abstract protected function htmlWorldStatement();
 
-  private $newsArray;
-
-
-  abstract protected function divStatement();
-  abstract protected function getTitle($html);
-  abstract protected function getDescription($html);
-  abstract protected function getUrl($html);
-  abstract protected function getUrlPicture($html);
-  abstract protected function getTags($html);
-  abstract protected function setWebAddress();
+    abstract protected function htmlPolandStatement();
 
 
+    abstract protected function getTitle($html);
+
+    abstract protected function getDescription($html);
+
+    abstract protected function getUrl($html);
+
+    abstract protected function getUrlPicture($html);
+
+    abstract protected function getTags($html);
+
+    abstract protected function setWebAddress();
 
 
     /**
-     constructor for abstract classs
+     * constructor for abstract classs
      */
-    public function __construct($str,$st2)
+    public function __construct()
     {
 
-     $this-> simpleHtmlDom = new simple_html_dom();
-     
+
+        $this->arrayNewsPoland = $this->generateNews($this->setHtmlDom(file_get_html($this->htmlPolandStatement())));
+        $this->arrayNewsWorld = $this->generateNews($this->setHtmlDom(file_get_html($this->htmlWorldStatement())));
 
 
-
-     }
-
+    }
 
 
-     protected function generateNews()
-     {
-
-         foreach ($this->htmlData as $item)
-         {
-             $a =new News();
-             $a->title = $this->getTitle($item);
+    /**
+     * @param $htmlData
+     * @return array
+     */
+    protected function generateNews($htmlData)
+    {
+        $temp = array();
+        foreach ($htmlData as $item) {
+            $a = new News();
+            $a->title = $this->getTitle($item);
             $a->description = $this->getDescription($item);
             $a->sourceUrl = $this->getUrl($item);
             $a->sourcePictureUrl = $this->getUrlPicture($item);
-            $a->tags = $this->getTags();
-            $this->newsArray[] = $a;
-            if(count($this->newsArray)== 6) break;
+            $a->tags = $this->getTags($item);
+            $temp[] = $a;
+            if (count($temp) == 6) break;
 
-         }
+        }
+        return $temp;
+    }
 
-     }
-
-    private function setDomWorld()
+    protected function setHtmlDom($html2)
     {
+        return $html2->find($this->divStatement());
+    }
+
+    public function refresh()
+    {
+
+        $this->arrayNewsPoland = $this->generateNews($this->setHtmlDom(file_get_html($this->htmlPolandStatement())));
+        $this->arrayNewsWorld = $this->generateNews($this->setHtmlDom(file_get_html($this->htmlWorldStatement())));
 
     }
 
 
-     private function setHtmlDom()
+    public function getArrayPoland()
     {
-       $this->htmlData = $this ->html2 ->find($this->divStatement());
+        return $this->arrayNewsPoland;
     }
 
-    public function getArrayHtmlDom()
+    public function getArrayWorld()
     {
-      return $this ->htmlData;
+        return $this->arrayNewsWorld;
     }
-
-
-
-
 
 
 }

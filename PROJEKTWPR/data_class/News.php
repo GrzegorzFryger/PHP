@@ -15,7 +15,12 @@ class News
     public $sourcePictureUrl = array();
     public $tags = array();
 
+    public function setTags($var)
+    {
 
+       $this-> tags[] = explode(" ", $var);
+
+    }
 
 
 }
