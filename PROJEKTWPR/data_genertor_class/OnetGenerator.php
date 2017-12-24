@@ -24,7 +24,7 @@ class OnetGenerator extends AbstractGenerator
 
     }
 
-    public function generateNews()
+    public function generateNewss()
     {
 
 
