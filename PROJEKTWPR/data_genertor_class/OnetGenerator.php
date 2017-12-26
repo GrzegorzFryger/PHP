@@ -53,7 +53,14 @@ class OnetGenerator extends AbstractGenerator
 
     protected function getUrlPicture($html)
     {
-      return  $html->children(2)->children(0)->children(0)->getAttribute('data-original');
+        if('' == ($html->children(2)->children(0)->children(0)->getAttribute('data-original')))
+        {
+            return 'http://simplifiedbmx.com/web/img/v3/image-not-found.png';
+        }
+        else
+            return  $html->children(2)->children(0)->children(0)->getAttribute('data-original');
+
+
     }
 
     protected function getTags($html)
@@ -73,5 +80,5 @@ class OnetGenerator extends AbstractGenerator
         return $this->HTMLPOLAND;
     }
 
-    
+
 }

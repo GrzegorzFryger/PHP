@@ -12,7 +12,7 @@ class News
     public  $description ;
 
     public $sourceUrl ;
-    public $sourcePictureUrl = array();
+    public $sourcePictureUrl;
     public $tags = array();
 
     public function setTags($var)

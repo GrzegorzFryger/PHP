@@ -35,7 +35,7 @@ abstract class AbstractGenerator
 
     abstract protected function getTags($html);
 
-    abstract protected function setWebAddress();
+
 
 
     /**
@@ -67,7 +67,7 @@ abstract class AbstractGenerator
             $a->sourcePictureUrl = $this->getUrlPicture($item);
             $a->tags = $this->getTags($item);
             $temp[] = $a;
-            if (count($temp) == 6) break;
+            if (count($temp) == 20) break;
 
         }
         return $temp;
