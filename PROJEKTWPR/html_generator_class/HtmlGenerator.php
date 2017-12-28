@@ -13,40 +13,32 @@
           $statement = count($test);
 
           for ($i = 0; $i < $statement; $i++) {
-              echo '<hr class="featurette-divider">
+              echo '<div class="col-lg-6 portfolio-item">
 
-    <div class="container-fluid">
-        <div class="row">
-
-            <div class="col-xs-6">
-
-                <img class="rounded mx-auto d-block" src="' . $test[ $i]->sourcePictureUrl . '">
-
-                <h2 class="">' . $test[ $i ]->title .
-                  '<span class="text-muted"></span>
-                </h2>
-                <p class="lead">
-                    ' . $test[ $i ]->description . '
-                </p>
-
-
+          <div class="card h-100">
+          
+            <a href="#">
+            <img class="card-img-top" src="'.$test[$i]->sourcePictureUrl .'"  alt="">
+            </a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="'.$test[$i]-> sourceUrl .'">'. $test[$i] -> title .'</a>
+              </h4>
+              <p class="card-text">'.$test[$i]-> description.'</p>
             </div>
-
-
-            <div class="col-xs-6">
-
-
-                <img class="rounded mx-auto d-block" src="' . $test2[ $i ]->sourcePictureUrl . '">
-                
-                <h2 class="">' . $test2[$i]->title . '
-                    <span class="text-muted"></span>
-                </h2>
-                <p class="lead">
-                    ' . $test2[$i]->description . '
-                </p>
-
-
+          </div>
+        </div>
+        
+        <div class="col-lg-6 portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="'.$test2[$i]->sourcePictureUrl .'"  alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="'.$test2[$i]-> sourceUrl .'">'. $test2[$i] -> title .'</a>
+              </h4>
+              <p class="card-text">'.$test[$i]-> description.'</p>
             </div>
+          </div>
         </div>';
 
 

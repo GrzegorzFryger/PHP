@@ -55,7 +55,7 @@ class OnetGenerator extends AbstractGenerator
     {
         if('' == ($html->children(2)->children(0)->children(0)->getAttribute('data-original')))
         {
-            return 'http://simplifiedbmx.com/web/img/v3/image-not-found.png';
+            return 'http://www.siit.ca/public/images/first_no_img.jpg';
         }
         else
             return  $html->children(2)->children(0)->children(0)->getAttribute('data-original');
