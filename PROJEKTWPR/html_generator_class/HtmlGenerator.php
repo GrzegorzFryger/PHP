@@ -10,7 +10,7 @@
 
       public static function generateHtml($test,$test2)
       {
-          $statement = 9;
+          $statement = count($test);
 
           for ($i = 0; $i < $statement; $i++) {
               echo '<hr class="featurette-divider">

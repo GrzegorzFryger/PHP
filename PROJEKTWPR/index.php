@@ -60,6 +60,21 @@ $test1 = new OnetGenerator();
 
 </nav>
 
+<button onclick="myFunction()">Try it</button>
+
+<script>
+
+    }
+
+    $(document).ready(function(){
+        $("p").click(function()
+        {
+            window.open("https://www.w3schools.com");
+        });
+    });
+</script>
+
+
 
 <main role="main">
 

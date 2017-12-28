@@ -67,7 +67,7 @@ abstract class AbstractGenerator
             $a->sourcePictureUrl = $this->getUrlPicture($item);
             $a->tags = $this->getTags($item);
             $temp[] = $a;
-            if (count($temp) == 20) break;
+            if (count($temp) == 6) break;
 
         }
         return $temp;
