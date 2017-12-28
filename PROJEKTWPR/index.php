@@ -78,8 +78,8 @@ $test1 = new OnetGenerator();
 <body>
 <div class="container">
 
-
     <div class="row">
+
 
     <?php HtmlGenerator::generateHtml($test1->getArrayPoland(),$test1->getArrayWorld()); ?>
 

@@ -15,6 +15,7 @@
           for ($i = 0; $i < $statement; $i++) {
               echo '<div class="col-lg-6 portfolio-item">
 
+
           <div class="card h-100">
           
             <a href="#">
