@@ -55,7 +55,12 @@ class OnetGenerator extends AbstractGenerator
     {
         if('' == ($html->children(2)->children(0)->children(0)->getAttribute('data-original')))
         {
-            return 'http://www.siit.ca/public/images/first_no_img.jpg';
+            $temphtml = file_get_html($html->children(2)->getAttribute('href'));
+        print_r( $temphtml->find('div[class="pageContent pageWrapper"]'));
+
+
+
+
         }
         else
             return  $html->children(2)->children(0)->children(0)->getAttribute('data-original');
