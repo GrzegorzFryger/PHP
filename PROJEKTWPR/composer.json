@@ -1,0 +1,14 @@
+{
+  "name": "Grzegorz/app_News_Generator",
+  "description": "description_text",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Grzegoz ",
+      "email": "s12583@pjwstk.edu.pl"
+    }
+  ],
+  "require": {
+  }
+}

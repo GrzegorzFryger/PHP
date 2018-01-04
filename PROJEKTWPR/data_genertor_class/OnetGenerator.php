@@ -13,37 +13,18 @@ include('data_genertor_class/AbstractGenerator.php');
 class OnetGenerator extends AbstractGenerator
 {
     private $statement = 'div[class="listItem listItemSolr itarticle"]';
-    private $html = 'http://wiadomosci.onet.pl/swiat';
-    private $htmlPoland = 'http://wiadomosci.onet.pl/kraj';
+    private $HTMLWORLD = 'http://wiadomosci.onet.pl/swiat';
+    private $HTMLPOLAND = 'http://wiadomosci.onet.pl/kraj';
 
     private $newsArray = array();
 
     public function __construct()
     {
-        parent::__construct($this->html);
+        parent::__construct();
 
     }
 
-    public function generateNews()
-    {
 
-
-
-        foreach ($this->htmlData as $item)
-        {
-
-            $a = new News();
-            $a->title = $item->children(2)->children(1)->plaintext; // title
-            $a->description = $item->children(2)->children(2)->plaintext; //description
-            $a->sourceUrl = $item->children(2)->getAttribute('href'); //href
-            $a->sourcePictureUrl = $item->children(2)->children(0)->children(0)->getAttribute('data-original'); //pictrue
-            $a->tags = $item->children(0)->plaintext;
-            $this->newsArray[] = $a;
-            if(count($this->newsArray)== 6) break;
-
-        }
-
-    }
 
     public function getArrayNews()
     {
@@ -54,4 +35,55 @@ class OnetGenerator extends AbstractGenerator
     {
         return $this -> statement;
     }
+
+    protected function getTitle($html)
+    {
+       return $html->children(2)->children(1)->plaintext;
+    }
+
+    protected function getDescription($html)
+    {
+       return $html->children(2)->children(2)->plaintext;
+    }
+
+    protected function getUrl($html)
+    {
+      return  $html->children(2)->getAttribute('href');
+    }
+
+    protected function getUrlPicture($html)
+    {
+        if('' == ($html->children(2)->children(0)->children(0)->getAttribute('data-original')))
+        {
+            $temphtml = file_get_html($html->children(2)->getAttribute('href'));
+           return $temphtml-> find('figure[class="mainPhoto"]',0) -> children(0) -> getAttribute('src');
+
+
+
+
+        }
+        else
+            return  $html->children(2)->children(0)->children(0)->getAttribute('data-original');
+
+
+    }
+
+    protected function getTags($html)
+    {
+      return  $html->children(0)->plaintext;
+    }
+
+
+    protected function htmlWorldStatement()
+    {
+         return $this->HTMLWORLD;
+    }
+
+    protected function htmlPolandStatement()
+    {
+
+        return $this->HTMLPOLAND;
+    }
+
+
 }
