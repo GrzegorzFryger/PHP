@@ -56,7 +56,7 @@ class OnetGenerator extends AbstractGenerator
         if('' == ($html->children(2)->children(0)->children(0)->getAttribute('data-original')))
         {
             $temphtml = file_get_html($html->children(2)->getAttribute('href'));
-        print_r( $temphtml->find('div[class="pageContent pageWrapper"]'));
+           return $temphtml-> find('figure[class="mainPhoto"]',0) -> children(0) -> getAttribute('src');
 
 
 
